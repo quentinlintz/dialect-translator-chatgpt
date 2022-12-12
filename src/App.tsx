@@ -16,8 +16,26 @@ const DialectTranslator = () => {
   };
 
   const handleTranslate = () => {
-    // code to handle translation goes here
-  };
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const csv = event.target.result;
+      const lines = csv.split('\n');
+      const wordMap = new Map();
+  
+      for (const line of lines) {
+        const [source, translation] = line.split(',');
+        wordMap.set(source, translation);
+      }
+  
+      const words = input.split(' ');
+      const translatedWords = words.map((word) => {
+        return wordMap.get(word) || word;
+      });
+      const translatedText = translatedWords.join(' ');
+      setOutput(translatedText);
+    };
+    reader.readAsText(csvFile);
+  };    
 
   return (
     <Container p='lg'>
