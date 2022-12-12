@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
-import {
-  Container,
-  Title,
-  Button,
-  Input,
-  Textarea,
-} from '@mantine/core';
+import { Button, Input } from '@mantine/core';
 
-const App = () => {
+const DialectTranslator = () => {
   const [csvFile, setCsvFile] = useState(null);
-  const [sentence, setSentence] = useState('');
-  const [translatedText, setTranslatedText] = useState('');
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
 
-  const handleFileSelect = (event) => {
-    setCsvFile(event.target.files[0]);
-  }
+  const handleCsvSelect = (event) => {
+    // code to handle CSV file selection goes here
+  };
 
-  const handleTranslateClick = () => {
-    // Implement translation logic here using the csvFile and sentence
-    // Then set the translated text using setTranslatedText
-  }
+  const handleInputChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleTranslate = () => {
+    // code to handle translation goes here
+  };
 
   return (
-    <Container>
-      <Title>Dialect Translator</Title>
-      <input type="file" accept=".csv" onChange={handleFileSelect} />
-      <Input value={sentence} onChange={(event) => setSentence(event.target.value)} />
-      <Button onClick={handleTranslateClick}>Translate</Button>
-      <Textarea value={translatedText} />
-    </Container>
+    <div>
+      <h1>Dialect Translator</h1>
+      <Button onClick={handleCsvSelect}>Select CSV File</Button>
+      <Input value={input} onChange={handleInputChange} />
+      <Button onClick={handleTranslate}>Translate</Button>
+      {output}
+    </div>
   );
 };
 
-export default App
+export default DialectTranslator;
