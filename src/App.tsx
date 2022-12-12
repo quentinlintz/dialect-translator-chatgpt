@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input } from '@mantine/core';
+import { Container, Button, Input } from '@mantine/core';
 
 const DialectTranslator = () => {
   const [csvFile, setCsvFile] = useState(null);
@@ -7,7 +7,8 @@ const DialectTranslator = () => {
   const [output, setOutput] = useState('');
 
   const handleCsvSelect = (event) => {
-    // code to handle CSV file selection goes here
+    const file = event.target.files[0];
+    setCsvFile(file);
   };
 
   const handleInputChange = (event) => {
@@ -19,13 +20,13 @@ const DialectTranslator = () => {
   };
 
   return (
-    <div>
+    <Container p='lg'>
       <h1>Dialect Translator</h1>
-      <Button onClick={handleCsvSelect}>Select CSV File</Button>
+      <input type="file" onChange={handleCsvSelect} />
       <Input value={input} onChange={handleInputChange} />
       <Button onClick={handleTranslate}>Translate</Button>
       {output}
-    </div>
+    </Container>
   );
 };
 
